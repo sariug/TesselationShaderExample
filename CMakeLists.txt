@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.4)
 
-project(StringArt)
+project(TesselationShaderExample)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -22,15 +22,15 @@ find_package(Magnum REQUIRED
     Trade
     )
 
-include_directories (${StringArt_SOURCE_DIR}/src)
-file(GLOB StringArt_SOURCES
+include_directories (${TesselationShaderExample_SOURCE_DIR}/src)
+file(GLOB TesselationShaderExample_SOURCES
     "src/*.h"
     "src/*.cpp"
 )
 set_directory_properties(PROPERTIES CORRADE_USE_PEDANTIC_FLAGS ON)
-corrade_add_resource(CubicBezierResources src/resources.conf)
-add_executable(main  ${StringArt_SOURCES}
-${CubicBezierResources})
+corrade_add_resource(TesselationShaderExampleResources src/resources.conf)
+add_executable(main  ${TesselationShaderExample_SOURCES}
+${TesselationShaderExampleResources})
 target_link_libraries(main PRIVATE
     Corrade::Main
     Magnum::GlfwApplication

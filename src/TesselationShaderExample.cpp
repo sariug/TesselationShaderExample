@@ -10,7 +10,7 @@
 #include <Magnum/Shaders/VertexColor.h>
 #include <Magnum/Math/Color.h>
 #include <Corrade/Containers/ArrayViewStl.h>
-#include "CubicBezierShader.h"
+#include "LineShaderProgram.h"
 #include <memory>
 
 namespace Magnum
@@ -25,9 +25,11 @@ namespace Magnum
         {
         public:
             explicit TesselationShaderExample(const Arguments &arguments);
-
         private:
             void drawEvent() override;
+            void init1DLineTesselation();
+            void init2DQuadTesselation();
+            void init3DSurfaceTesselation();
 
             // Camera attributes
             std::shared_ptr<Object3D> m_cameraObject;
@@ -35,7 +37,7 @@ namespace Magnum
 
             Scene3D m_scene;
             std::shared_ptr<SceneGraph::DrawableGroup3D> m_drawableGroup;
-            std::unique_ptr<CubicBezierShader> m_shader;
+            std::unique_ptr<LineShaderProgram> m_shader;
             GL::Buffer m_controlPointsBuffer{ NoCreate };
             GL::Mesh m_geometryMesh{ NoCreate }, m_controlPointsMesh;
             std::vector<Vector3> m_controlVertices;
@@ -55,17 +57,15 @@ namespace Magnum
             m_camera->setProjectionMatrix(Matrix4::orthographicProjection({ 2.8, 2.1 }, 0.1, 100))
                 .setViewport(GL::defaultFramebuffer.viewport().size());
 
-            m_shader = std::make_unique<CubicBezierShader>();
+            m_shader = std::make_unique<LineShaderProgram>();
 
             // initial vertices
-            m_controlVertices.push_back({ -1.0f, -1.0f, 0.0f });
-            m_controlVertices.push_back({ -1.0f, 1.0f, 0.0f });
-            m_controlVertices.push_back({ 1.0f, 1.0f, 0.0f });
+            init1DLineTesselation();
             m_controlPointsBuffer = GL::Buffer(GL::Buffer::TargetHint::Array);
             m_controlPointsBuffer.setData(m_controlVertices);
             m_geometryMesh = GL::Mesh(GL::MeshPrimitive::Patches);
             m_geometryMesh.setCount(m_controlVertices.size())
-                .addVertexBuffer(m_controlPointsBuffer, 0, CubicBezierShader::VertexPosition{});
+                .addVertexBuffer(m_controlPointsBuffer, 0, LineShaderProgram::VertexPosition{});
 
             m_controlPointsMesh = GL::Mesh(GL::MeshPrimitive::Points);
             m_controlPointsMesh.setCount(m_controlVertices.size())
@@ -91,6 +91,15 @@ namespace Magnum
             swapBuffers();
             redraw();
         }
+        void TesselationShaderExample::init1DLineTesselation() {
+            m_controlVertices.clear();
+            m_controlVertices.push_back({ -1.0f, -1.0f, 0.0f });
+            m_controlVertices.push_back({ -1.0f, 1.0f, 0.0f });
+            m_controlVertices.push_back({ 1.0f, 1.0f, 0.0f });
+        }
+        void TesselationShaderExample::init2DQuadTesselation() {}
+        void TesselationShaderExample::init3DSurfaceTesselation() {}
+
     } // namespace Examples
 } // namespace Magnum
 MAGNUM_APPLICATION_MAIN(Magnum::Examples::TesselationShaderExample)
