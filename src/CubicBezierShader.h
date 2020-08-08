@@ -8,7 +8,7 @@ namespace Magnum
         class CubicBezierShader : public GL::AbstractShaderProgram
         {
         public:
-            typedef GL::Attribute<0, Vector2> VertexPosition;
+            typedef GL::Attribute<0, Vector3> VertexPosition;
             CubicBezierShader();
             CubicBezierShader &setNumberOfSegments(const int number);
             CubicBezierShader &setNumberOfStrips(const int number);
