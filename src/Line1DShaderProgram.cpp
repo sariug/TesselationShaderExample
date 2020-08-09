@@ -22,10 +22,10 @@ namespace Magnum
             GL::Shader tes{GL::Version::GL400, GL::Shader::Type::TessellationEvaluation};
             GL::Shader fs{GL::Version::GL400, GL::Shader::Type::Fragment};
 
-            vs.addSource(rs.get("ForAll.vs"));
-            tcs.addSource(rs.get("Line1D.tcs"));
-            tes.addSource(rs.get("Line1D.tes"));
-            fs.addSource(rs.get("Line1D.fs"));
+            vs.addSource(rs.get("glsl/ForAll.vs"));
+            tcs.addSource(rs.get("glsl/Line1D.tcs"));
+            tes.addSource(rs.get("glsl/Line1D.tes"));
+            fs.addSource(rs.get("glsl/Line1D.fs"));
 
             CORRADE_INTERNAL_ASSERT_OUTPUT(GL::Shader::compile({vs, tcs, tes, fs}));
 

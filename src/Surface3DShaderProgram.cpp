@@ -24,11 +24,11 @@ namespace Magnum
             GL::Shader gs{GL::Version::GL400, GL::Shader::Type::Geometry};
             GL::Shader fs{GL::Version::GL400, GL::Shader::Type::Fragment};
 
-            vs.addSource(rs.get("ForAll.vs"));
-            tcs.addSource(rs.get("Surface3D.tcs"));
-            tes.addSource(rs.get("Surface3D.tes"));
-            gs.addSource(rs.get("Surface3D.gs"));
-            fs.addSource(rs.get("Surface3D.fs"));
+            vs.addSource(rs.get("glsl/ForAll.vs"));
+            tcs.addSource(rs.get("glsl/Surface3D.tcs"));
+            tes.addSource(rs.get("glsl/Surface3D.tes"));
+            gs.addSource(rs.get("glsl/Surface3D.gs"));
+            fs.addSource(rs.get("glsl/Surface3D.fs"));
 
             CORRADE_INTERNAL_ASSERT_OUTPUT(GL::Shader::compile({vs, tcs, tes, gs, fs}));
 

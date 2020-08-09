@@ -23,11 +23,11 @@ namespace Magnum
             GL::Shader gs{GL::Version::GL400, GL::Shader::Type::Geometry};
             GL::Shader fs{GL::Version::GL400, GL::Shader::Type::Fragment};
 
-            vs.addSource(rs.get("ForAll.vs"));
-            tcs.addSource(rs.get("Quad2D.tcs"));
-            tes.addSource(rs.get("Quad2D.tes"));
-            gs.addSource(rs.get("Quad2D.gs"));
-            fs.addSource(rs.get("Quad2D.fs"));
+            vs.addSource(rs.get("glsl/ForAll.vs"));
+            tcs.addSource(rs.get("glsl/Quad2D.tcs"));
+            tes.addSource(rs.get("glsl/Quad2D.tes"));
+            gs.addSource(rs.get("glsl/Quad2D.gs"));
+            fs.addSource(rs.get("glsl/Quad2D.fs"));
 
             CORRADE_INTERNAL_ASSERT_OUTPUT(GL::Shader::compile({vs, tcs, tes, gs, fs}));
 
