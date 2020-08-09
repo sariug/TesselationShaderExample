@@ -1,4 +1,0 @@
-/home/sariug/workspace/StringArt/build/CMakeFiles/rebuild_cache.dir
-/home/sariug/workspace/StringArt/build/CMakeFiles/edit_cache.dir
-/home/sariug/workspace/StringArt/build/CMakeFiles/TesselationShaderExampleResources-dependencies.dir
-/home/sariug/workspace/StringArt/build/CMakeFiles/main.dir
