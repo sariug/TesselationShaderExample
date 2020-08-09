@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+9f0d3f1e96325796e9040ccc0271a59f resource_TesselationShaderExampleResources.cpp

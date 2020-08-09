@@ -10,8 +10,8 @@
 #include <Magnum/Shaders/VertexColor.h>
 #include <Magnum/Math/Color.h>
 #include <Corrade/Containers/ArrayViewStl.h>
-#include "LineShaderProgram.h"
-#include "SurfaceShaderProgram.h"
+#include "Line1DShaderProgram.h"
+#include "Surface3DShaderProgram.h"
 
 #include <memory>
 #include <random>
@@ -44,8 +44,8 @@ namespace Magnum
 
             Scene3D m_scene;
             std::shared_ptr<SceneGraph::DrawableGroup3D> m_drawableGroup;
-            std::shared_ptr<LineShaderProgram> m_LineShader;
-            std::shared_ptr<SurfaceShaderProgram> m_SurfaceShader;
+            std::shared_ptr<Line1DShaderProgram> m_LineShader;
+            std::shared_ptr<Surface3DShaderProgram> m_SurfaceShader;
 
             GL::Buffer m_controlPointsBuffer{ NoCreate };
             GL::Mesh m_geometryMesh{ NoCreate }, m_controlPointsMesh;
@@ -90,7 +90,7 @@ namespace Magnum
             m_controlPointsBuffer.setData(m_controlVertices);
             m_geometryMesh = GL::Mesh(GL::MeshPrimitive::Patches);
             m_geometryMesh.setCount(m_controlVertices.size())
-                .addVertexBuffer(m_controlPointsBuffer, 0, SurfaceShaderProgram::VertexPosition{});
+                .addVertexBuffer(m_controlPointsBuffer, 0, Surface3DShaderProgram::VertexPosition{});
 
             m_controlPointsMesh = GL::Mesh(GL::MeshPrimitive::Points);
             m_controlPointsMesh.setCount(m_controlVertices.size())
@@ -100,7 +100,7 @@ namespace Magnum
             GL::Renderer::setPatchVertexCount(m_controlVertices.size());
         }
         void TesselationShaderExample::set1DLineTesselationControlPoints() {
-            m_LineShader = std::make_shared<LineShaderProgram>();
+            m_LineShader = std::make_shared<Line1DShaderProgram>();
             m_controlVertices.clear();
             m_controlVertices.push_back({ -1.0f, -1.0f, 0.0f });
             m_controlVertices.push_back({ -1.0f, 1.0f, 0.0f });
@@ -109,7 +109,7 @@ namespace Magnum
         }
         void TesselationShaderExample::set2DQuadTesselationControlPoints() {}
         void TesselationShaderExample::set3DSurfaceTesselationControlPoints() {
-            m_SurfaceShader = std::make_shared<SurfaceShaderProgram>();
+            m_SurfaceShader = std::make_shared<Surface3DShaderProgram>();
             std::random_device rd;
             std::mt19937 mt(rd());
             std::uniform_real_distribution<double> dist(0.0, 1.0);

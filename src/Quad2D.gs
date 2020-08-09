@@ -5,13 +5,8 @@ noperspective out vec3 EdgeDistance;
 
 uniform mat4 ViewportMatrix;  // Viewport matrix
 
-in vec4 TEPosition[];
-out vec4 ZPosition;
-
 void main()
 {
-   ZPosition = TEPosition[0];
-
     // Transform each vertex into viewport space
     vec3 p0 = vec3(ViewportMatrix * (gl_in[0].gl_Position / gl_in[0].gl_Position.w));
     vec3 p1 = vec3(ViewportMatrix * (gl_in[1].gl_Position / gl_in[1].gl_Position.w));

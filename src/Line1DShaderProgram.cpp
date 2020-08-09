@@ -1,4 +1,4 @@
-#include "LineShaderProgram.h"
+#include "Line1DShaderProgram.h"
 #include <Corrade/Containers/Reference.h>
 #include <Corrade/Utility/Resource.h>
 #include <Magnum/GL/Version.h>
@@ -10,7 +10,7 @@ namespace Magnum
     namespace Examples
     {
 
-        LineShaderProgram::LineShaderProgram()
+        Line1DShaderProgram::Line1DShaderProgram()
         {
             MAGNUM_ASSERT_GL_VERSION_SUPPORTED(GL::Version::GL400);
 
@@ -23,9 +23,9 @@ namespace Magnum
             GL::Shader fs{GL::Version::GL400, GL::Shader::Type::Fragment};
 
             vs.addSource(rs.get("ForAll.vs"));
-            tcs.addSource(rs.get("LineShader.tcs"));
-            tes.addSource(rs.get("LineShader.tes"));
-            fs.addSource(rs.get("LineShader.fs"));
+            tcs.addSource(rs.get("Line1D.tcs"));
+            tes.addSource(rs.get("Line1D.tes"));
+            fs.addSource(rs.get("Line1D.fs"));
 
             CORRADE_INTERNAL_ASSERT_OUTPUT(GL::Shader::compile({vs, tcs, tes, fs}));
 
@@ -39,22 +39,22 @@ namespace Magnum
             m_numStrips = uniformLocation("numStrips");
             m_transformationProjectionMatrix = uniformLocation("MVP");
         } // namespace Examples
-        LineShaderProgram &LineShaderProgram::setNumberOfSegments(const int number)
+        Line1DShaderProgram &Line1DShaderProgram::setNumberOfSegments(const int number)
         {
             setUniform(m_numSegments, number);
             return *this;
         }
-        LineShaderProgram &LineShaderProgram::setNumberOfStrips(const int number)
+        Line1DShaderProgram &Line1DShaderProgram::setNumberOfStrips(const int number)
         {
             setUniform(m_numStrips, number);
             return *this;
         }
-        LineShaderProgram &LineShaderProgram::setColor(const Color3& color)
+        Line1DShaderProgram &Line1DShaderProgram::setColor(const Color3& color)
         {
             setUniform(m_lineColor, color);
             return *this;
         }
-        LineShaderProgram &LineShaderProgram::setTransformationProjectionMatrix(const Matrix4& matrix)
+        Line1DShaderProgram &Line1DShaderProgram::setTransformationProjectionMatrix(const Matrix4& matrix)
         {
             setUniform(m_transformationProjectionMatrix, matrix);
             return *this;

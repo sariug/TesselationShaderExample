@@ -1,4 +1,4 @@
-#include "SurfaceShaderProgram.h"
+#include "Surface3DShaderProgram.h"
 #include <Corrade/Containers/Reference.h>
 #include <Corrade/Utility/Resource.h>
 #include <Magnum/GL/Version.h>
@@ -11,7 +11,7 @@ namespace Magnum
     namespace Examples
     {
 
-        SurfaceShaderProgram::SurfaceShaderProgram()
+        Surface3DShaderProgram::Surface3DShaderProgram()
         {
             MAGNUM_ASSERT_GL_VERSION_SUPPORTED(GL::Version::GL400);
 
@@ -25,10 +25,10 @@ namespace Magnum
             GL::Shader fs{GL::Version::GL400, GL::Shader::Type::Fragment};
 
             vs.addSource(rs.get("ForAll.vs"));
-            tcs.addSource(rs.get("SurfaceShader.tcs"));
-            tes.addSource(rs.get("SurfaceShader.tes"));
-            gs.addSource(rs.get("SurfaceShader.gs"));
-            fs.addSource(rs.get("SurfaceShader.fs"));
+            tcs.addSource(rs.get("Surface3D.tcs"));
+            tes.addSource(rs.get("Surface3D.tes"));
+            gs.addSource(rs.get("Surface3D.gs"));
+            fs.addSource(rs.get("Surface3D.fs"));
 
             CORRADE_INTERNAL_ASSERT_OUTPUT(GL::Shader::compile({vs, tcs, tes, gs, fs}));
 
@@ -44,27 +44,27 @@ namespace Magnum
 
             m_transformationProjectionMatrix = uniformLocation("MVP");
         } // namespace Examples
-        SurfaceShaderProgram &SurfaceShaderProgram::setLineWidth(const float number)
+        Surface3DShaderProgram &Surface3DShaderProgram::setLineWidth(const float number)
         {
             setUniform(m_lineWidth, number);
             return *this;
         }
-        SurfaceShaderProgram &SurfaceShaderProgram::setTessLevel(const int number)
+        Surface3DShaderProgram &Surface3DShaderProgram::setTessLevel(const int number)
         {
             setUniform(m_tessLevel, number);
             return *this;
         }
-        SurfaceShaderProgram &SurfaceShaderProgram::setLineColor(const Color3 &color)
+        Surface3DShaderProgram &Surface3DShaderProgram::setLineColor(const Color3 &color)
         {
             setUniform(m_lineColor, color);
             return *this;
         }
-        SurfaceShaderProgram &SurfaceShaderProgram::setViewportMatrix(const Matrix4 &matrix)
+        Surface3DShaderProgram &Surface3DShaderProgram::setViewportMatrix(const Matrix4 &matrix)
         {
             setUniform(m_viewportMatrix, matrix);
             return *this;
         }
-        SurfaceShaderProgram &SurfaceShaderProgram::setTransformationProjectionMatrix(const Matrix4 &matrix)
+        Surface3DShaderProgram &Surface3DShaderProgram::setTransformationProjectionMatrix(const Matrix4 &matrix)
         {
             setUniform(m_transformationProjectionMatrix, matrix);
             return *this;
